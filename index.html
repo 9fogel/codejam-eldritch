@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eldritch Horror Helper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header></header>
+  <main class="main">
+    <div class="ancient-container">
+      <ul class="ancient-list">
+        <li class="ancient-item active anchient-A">Azathoth</li>
+        <li class="ancient-item anchient-C">Cthulthu</li>
+        <li class="ancient-item anchient-IS">IogSothoth</li>
+        <li class="ancient-item anchient-SN">ShubNiggurath</li>
+      </ul>
+    </div>
+    <div class="level">
+      <h1 class="level-title">Уровень сложности</h1>
+      <button class="level-btn">Обычный</button>
+    </div>
+    <div class="cards">
+      <div class="counter">
+        <ul class="stages-list">
+          <li class="stage-item">
+            <span>Первый этап</span>
+            <ul class="card-list first-stage">
+              <li class="card-item green">1</li>
+              <li class="card-item brown">2</li>
+              <li class="card-item blue">1</li>
+            </ul>
+          </li>
+          <li class="stage-item">
+            <span>Второй этап</span>
+            <ul class="card-list second-stage">
+              <li class="card-item green">2</li>
+              <li class="card-item brown">3</li>
+              <li class="card-item blue">1</li>
+            </ul>
+          </li>
+          <li class="stage-item">
+            <span>Третий этап</span>
+            <ul class="card-list third-stage">
+              <li class="card-item green">2</li>
+              <li class="card-item brown">4</li>
+              <li class="card-item blue">0</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="card-deck"></div>
+      <div class="card-deck-flipped"></div>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="script.js"></script>
+</body>
+</html>
