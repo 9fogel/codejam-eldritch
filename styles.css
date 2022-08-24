@@ -81,7 +81,8 @@ ul {
   margin: auto 0;
 }
 
-.level-btn {
+.level-btn,
+.mess-btn {
   padding: 10px 20px;
   margin-top: 20px;
   border-radius: 4px;
@@ -89,25 +90,31 @@ ul {
   box-shadow: 0 2px 4px rgba(0, 0, 0, .4);
 }
 
-.level-btn:hover {
+.level-btn:hover,
+.mess-btn:hover {
   cursor: pointer;
   background-color: orange;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
 }
 
-.level-btn:active {
+.level-btn:active,
+.mess-btn:active {
   background-color: rgb(179, 124, 24);
 }
 
 .cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
   padding: 40px;
-  width: 450px;
+  width: 550px;
 }
 
 .stages-list {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 30px;
 }
 
 .stage-item {
@@ -143,4 +150,42 @@ ul {
 
 .blue {
   background-color: #1f1fcc;
+}
+
+.mess-btn {
+  align-self: center;
+}
+
+.playground {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  height: 300px;
+}
+
+.card-deck {
+  width: 50%;
+  height: 100%;
+  background-image: url('./assets/MythicCards/mythicCardBackground.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: solid 1px red;
+  border-radius: 16px;
+}
+
+.card-deck:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.card-deck-flipped {
+  width: 50%;
+  height: 100%;
+  background-color: #c4c4c4;
+  background-image: url('./assets/MythicCards/blue/blue1.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+  border: solid 1px red;
+  border-radius: 16px;
 }
