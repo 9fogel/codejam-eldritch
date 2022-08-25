@@ -22,7 +22,6 @@ ul {
 
 .main {
   display: flex;
-  flex-direction: coulmn;
   justify-content: space-between;
   padding: 40px;
 }
@@ -34,9 +33,7 @@ ul {
 .ancient-list {
   display: grid;
   grid-template-columns: 300px 300px;
-  /* grid-template-rows: 400px 400px; */
   gap: 20px;
-    /* width: 100%; */
 }
 
 .ancient-item {
@@ -188,4 +185,76 @@ ul {
   background-position: 50% 50%;
   border: solid 1px red;
   border-radius: 16px;
+}
+
+@media (max-width: 1240px) {
+
+  .ancient-list {
+    grid-template-columns: 200px 200px;
+  }
+
+  .ancient-item {
+    padding-top: 30px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: #c4c4c4;
+  }
+
+  .level {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .level-btn, .mess-btn {
+    margin-top: 10px;
+  }
+  
+  .cards {
+    padding: 20px;
+  }
+
+  .stages-list {
+    gap: 16px;
+  }
+
+}
+
+@media (max-width: 1000px) {
+
+  .ancient-list {
+    grid-template-columns: 200px;
+  }
+  
+  .ancient-item {
+    height: 250px;
+  }
+
+  .level-title {
+    font-size: 16px;
+  }
+
+  .cards {
+    justify-content: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .cards {
+    padding: 0;
+  } 
+
+  .playground {
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+  }
+
+  .card-deck,
+  .card-deck-flipped {
+    width: 70%;
+  }
 }
