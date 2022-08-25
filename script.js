@@ -32,30 +32,36 @@ function setAnchientScheme(anchient) {
   });
 }
 
+let deck = [];
+
+
+
 anchients.forEach((anchient) => {
   anchient.onclick = function() {
     if (anchient.innerHTML === 'Azathoth') {
       setAnchientScheme(azathoth);
       document.querySelector('.active').classList.remove('active');
       anchient.classList.add('active');
-      getCardArr(azathoth);
+      // getCardArr(azathoth);
+      deck = getCardArr(azathoth);
+      // cutStages(azathoth);
       // const setofCards = getCardArr(azathoth);
       // console.log(setofCards);
     } else if (anchient.innerHTML === 'Cthulthu') {
       setAnchientScheme(cthulhu);
       document.querySelector('.active').classList.remove('active');
       anchient.classList.add('active');
-      getCardArr(cthulhu);
+      deck = getCardArr(cthulhu);
     } else if (anchient.innerHTML === 'IogSothoth') {
       setAnchientScheme(iogsothoth);
       document.querySelector('.active').classList.remove('active');
       anchient.classList.add('active');
-      getCardArr(iogsothoth);
+      deck = getCardArr(iogsothoth);
     } else if (anchient.innerHTML === 'ShubNiggurath') {
       setAnchientScheme(shubniggurath);
       document.querySelector('.active').classList.remove('active');
       anchient.classList.add('active');
-      getCardArr(shubniggurath);
+      deck = getCardArr(shubniggurath);
     }
   }
 });
@@ -65,27 +71,6 @@ function getRandomNum(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
-
-// function totalCards(arr) {
-//   let GBBTTotalArr = [];
-//   let GBBTotalObj = {};
-//   const totalGreen = arr[0] + arr[3] + arr[6];
-//   GBBTTotalArr.push(totalGreen);
-//   GBBTotalObj.green = totalGreen;
-//   // console.log(`total green - ${totalGreen}`);
-//   const totalBrown = arr[1] + arr[4] + arr[7];
-//   GBBTTotalArr.push(totalBrown);
-//   GBBTotalObj.brown = totalBrown;
-//   // console.log(`total green - ${totalBrown}`);
-//   const totalBlue = arr[2] + arr[5] + arr[8];
-//   GBBTTotalArr.push(totalBlue);
-//   GBBTotalObj.blue = totalBlue;
-//   // console.log(`total green - ${totalBlue}`);
-//   // console.log(GBBTTotalArr);
-//   // console.log(GBBTotalObj);
-//   return GBBTotalObj;
-// }
-
 
 function getCardArr(anchient) {
   const totalGreen = anchient[0] + anchient[3] + anchient[6];
@@ -98,53 +83,146 @@ function getCardArr(anchient) {
   let arrElem;
 
   function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-}
-
-function fillArr (letter, start, end, number) {
-  while (arr.length < number) {
-    arrElem = getRandomIntInclusive(start, end);
-    if (!arr.includes(arrElem)) {
-      arr.push(arrElem);
-      arrUnique.push(`${letter}${arrElem}`);
-    }
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
   }
 
-  initCardArr.push(...arrUnique); 
-  arr.length = 0;
-  arrUnique.length = 0;
-    
+  function fillArr (letter, start, end, number) {
+    while (arr.length < number) {
+      arrElem = getRandomIntInclusive(start, end);
+      if (!arr.includes(arrElem)) {
+        arr.push(arrElem);
+        arrUnique.push(`${letter}${arrElem}`);
+      }
+    }
+
+    initCardArr.push(...arrUnique); 
+    arr.length = 0;
+    arrUnique.length = 0;
+    return initCardArr 
+  }
+
+  fillArr('green', 1, 18, totalGreen);
+  fillArr('brown', 1, 21, totalBrown);
+  fillArr('blue', 1, 12, totalBlue);
+
+  console.log(initCardArr);
+
+  let colorGreenArr = [];
+  let colorBrownArr = [];
+  let colorBlueArr = [];
+
+  initCardArr.forEach((card) => {
+    if (card.startsWith('blue')) {
+      colorBlueArr.push(card);
+    } else if (card.startsWith('brown')) {
+      colorBrownArr.push(card);
+    } else if (card.startsWith('green')) {
+      colorGreenArr.push(card);
+    }
+  });
+
+  // console.log(colorGreenArr);
+  // console.log(colorBrownArr);
+  // console.log(colorBlueArr);
+
+  let greenArrSh = shuffle(colorGreenArr);
+  let brownArrSh = shuffle(colorBrownArr);
+  let blueArrSh = shuffle(colorBlueArr);
+
+  // console.log(greenArrSh);
+  // console.log(brownArrSh);
+  // console.log(blueArrSh);
+
+  
+  let firstStage;
+  let secondStage;
+  let thirdStage;
+  cutStages();
+
+  
+  let stagedArr = firstStage.concat(secondStage, thirdStage);
+  // console.log(stagedArr);
+  let stagedArrSh = shuffle(firstStage).concat(shuffle(secondStage), shuffle(thirdStage));
+  // console.log(stagedArrSh);
+
+  function cutStages() {
+    firstStage = greenArrSh.splice(0, anchient[0]).concat(brownArrSh.splice(0, anchient[1]), blueArrSh.splice(0, anchient[2]));
+    secondStage = greenArrSh.splice(0, anchient[3]).concat(brownArrSh.splice(0, anchient[4]), blueArrSh.splice(0, anchient[5]));
+    thirdStage= greenArrSh.concat(brownArrSh, blueArrSh);
+  }
+
+  // console.log(firstStage);
+  // console.log(secondStage);
+  // console.log(thirdStage);
+
+  return stagedArrSh;
+// return initCardArr;
 }
 
-fillArr('green', 1, 18, totalGreen);
-fillArr('brown', 1, 21, totalBrown);
-fillArr('blue', 1, 12, totalBlue);
+function shuffle(array) {
+  array.sort(() => Math.random() - 0.5);
+  return array
+}
 
-console.log(initCardArr);
-return initCardArr;
+const messBtn = document.querySelector('.mess-btn');
+
+messBtn.onclick = function() {
+  console.log(deck);
+}
+
+const cardDeck = document.querySelector('.card-deck');
+cardDeck.onclick = function () {
+  // console.log('Show card');
+  // console.log(deck.shift());
+  showCard();
 }
 
 
 
-
-
+// ['green7', 'blue11', 'brown12', 'brown4', 'brown10', 'brown8', 'brown18', 'blue12', 'green12', 'green11', 'brown14', 'brown5', 'brown15', 'green5', 'green13', 'brown20']
 
 // let randomNum = (getRandomNum(1, 21));
 
-const color = 'blue';
-const colorNum = color + 8;
+
+
 
 function showCard() {
-  const card = document.querySelector('.card-deck-flipped')
+  let color = '';
+  let number;
+  
+  const cardFlipped = document.querySelector('.card-deck-flipped')
   const bgImage = new Image();
+
+  let card = deck.shift();
+  if (card !== undefined) {
+    if(card.startsWith('green')) {
+    color = 'green';
+    number = card.substring(5, card.length);
+    } else if (card.startsWith('brown')) {
+      color = 'brown';
+      number = card.substring(5, card.length);
+    } else if (card.startsWith('blue')) {
+      color = 'blue';
+      number = card.substring(4, card.length);
+    }
+  } else {
+    alert ('Карты в колоде закончились, перезагрузите страницу или выберете Древнего, чтобы начать заново');
+    cardFlipped.style.backgroundImage = '';
+  }
+  
+  
+  let colorNum = color + number;
+
   bgImage.src = `./assets/MythicCards/${color}/${colorNum}.jpg`;
   bgImage.onload = () => {
-    card.style.backgroundImage = `url(${bgImage.src})`;
+    cardFlipped.style.backgroundImage = `url(${bgImage.src})`;
   }
+
+  console.log(colorNum);
 }
 
-showCard();
+// showCard();
 
 
