@@ -160,6 +160,10 @@ ul {
   height: 300px;
 }
 
+.playground-hidden {
+  visibility: hidden;
+}
+
 .card-deck {
   width: 50%;
   height: 100%;

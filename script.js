@@ -1,5 +1,4 @@
 const anchients = document.querySelectorAll('.ancient-item');
-// console.log(anchients);
 
 const azathoth = [
   1, 2, 1,
@@ -34,7 +33,10 @@ function setAnchientScheme(anchient) {
 
 let deck = [];
 
-
+window.onload = function () {
+  setAnchientScheme(azathoth);
+  deck = getCardArr(azathoth);
+}
 
 anchients.forEach((anchient) => {
   anchient.onclick = function() {
@@ -42,11 +44,7 @@ anchients.forEach((anchient) => {
       setAnchientScheme(azathoth);
       document.querySelector('.active').classList.remove('active');
       anchient.classList.add('active');
-      // getCardArr(azathoth);
       deck = getCardArr(azathoth);
-      // cutStages(azathoth);
-      // const setofCards = getCardArr(azathoth);
-      // console.log(setofCards);
     } else if (anchient.innerHTML === 'Cthulthu') {
       setAnchientScheme(cthulhu);
       document.querySelector('.active').classList.remove('active');
@@ -123,19 +121,11 @@ function getCardArr(anchient) {
     }
   });
 
-  // console.log(colorGreenArr);
-  // console.log(colorBrownArr);
-  // console.log(colorBlueArr);
-
   let greenArrSh = shuffle(colorGreenArr);
   let brownArrSh = shuffle(colorBrownArr);
   let blueArrSh = shuffle(colorBlueArr);
 
-  // console.log(greenArrSh);
-  // console.log(brownArrSh);
-  // console.log(blueArrSh);
 
-  
   let firstStage;
   let secondStage;
   let thirdStage;
@@ -143,9 +133,7 @@ function getCardArr(anchient) {
 
   
   let stagedArr = firstStage.concat(secondStage, thirdStage);
-  // console.log(stagedArr);
   let stagedArrSh = shuffle(firstStage).concat(shuffle(secondStage), shuffle(thirdStage));
-  // console.log(stagedArrSh);
 
   function cutStages() {
     firstStage = greenArrSh.splice(0, anchient[0]).concat(brownArrSh.splice(0, anchient[1]), blueArrSh.splice(0, anchient[2]));
@@ -153,12 +141,8 @@ function getCardArr(anchient) {
     thirdStage= greenArrSh.concat(brownArrSh, blueArrSh);
   }
 
-  // console.log(firstStage);
-  // console.log(secondStage);
-  // console.log(thirdStage);
-
   return stagedArrSh;
-// return initCardArr;
+
 }
 
 function shuffle(array) {
@@ -167,26 +151,17 @@ function shuffle(array) {
 }
 
 const messBtn = document.querySelector('.mess-btn');
+const playground = document.querySelector('.playground');
 
 messBtn.onclick = function() {
   console.log(deck);
+  playground.classList.remove('playground-hidden');
 }
 
 const cardDeck = document.querySelector('.card-deck');
 cardDeck.onclick = function () {
-  // console.log('Show card');
-  // console.log(deck.shift());
   showCard();
 }
-
-
-
-// ['green7', 'blue11', 'brown12', 'brown4', 'brown10', 'brown8', 'brown18', 'blue12', 'green12', 'green11', 'brown14', 'brown5', 'brown15', 'green5', 'green13', 'brown20']
-
-// let randomNum = (getRandomNum(1, 21));
-
-
-
 
 function showCard() {
   let color = '';
@@ -211,10 +186,10 @@ function showCard() {
       countBlue();
     }
   } else {
-    alert ('Карты в колоде закончились, перезагрузите страницу или выберете Древнего, чтобы начать заново');
+    alert ('Карты в колоде закончились, перезагрузите страницу или выберите Древнего, чтобы начать заново');
     cardFlipped.style.backgroundImage = '';
+    playground.classList.add('playground-hidden');
   }
-  
   
   let colorNum = color + number;
 
@@ -229,7 +204,6 @@ function showCard() {
 const greenCounters = document.querySelectorAll('.green');
 const brownCounters = document.querySelectorAll('.brown');
 const blueCounters = document.querySelectorAll('.blue');
-
 
 function countGreen() {
   if (+greenCounters[0].textContent != 0) {
