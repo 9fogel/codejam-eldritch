@@ -200,12 +200,15 @@ function showCard() {
     if(card.startsWith('green')) {
     color = 'green';
     number = card.substring(5, card.length);
+    countGreen();
     } else if (card.startsWith('brown')) {
       color = 'brown';
       number = card.substring(5, card.length);
+      countBrown();
     } else if (card.startsWith('blue')) {
       color = 'blue';
       number = card.substring(4, card.length);
+      countBlue();
     }
   } else {
     alert ('Карты в колоде закончились, перезагрузите страницу или выберете Древнего, чтобы начать заново');
@@ -223,6 +226,39 @@ function showCard() {
   console.log(colorNum);
 }
 
-// showCard();
+const greenCounters = document.querySelectorAll('.green');
+const brownCounters = document.querySelectorAll('.brown');
+const blueCounters = document.querySelectorAll('.blue');
+
+
+function countGreen() {
+  if (+greenCounters[0].textContent != 0) {
+    greenCounters[0].textContent = +greenCounters[0].textContent - 1;
+  } else if (+greenCounters[0].textContent == 0 && +greenCounters[1].textContent != 0) {
+    greenCounters[1].textContent = +greenCounters[1].textContent - 1;
+  } else if (+greenCounters[0].textContent == 0 && +greenCounters[1].textContent == 0 && +greenCounters[2].textContent != 0) {
+    greenCounters[2].textContent = +greenCounters[2].textContent - 1;
+  }
+}
+
+function countBrown() {
+  if (+brownCounters[0].textContent != 0) {
+    brownCounters[0].textContent = +brownCounters[0].textContent - 1;
+  } else if (+brownCounters[0].textContent == 0 && +brownCounters[1].textContent != 0) {
+    brownCounters[1].textContent = +brownCounters[1].textContent - 1;
+  } else if (+brownCounters[0].textContent == 0 && +brownCounters[1].textContent == 0 && +brownCounters[2].textContent != 0) {
+    brownCounters[2].textContent = +brownCounters[2].textContent - 1;
+  }
+}
+
+function countBlue() {
+  if (+blueCounters[0].textContent != 0) {
+    blueCounters[0].textContent = +blueCounters[0].textContent - 1;
+  } else if (+blueCounters[0].textContent == 0 && +blueCounters[1].textContent != 0) {
+    blueCounters[1].textContent = +blueCounters[1].textContent - 1;
+  } else if (+blueCounters[0].textContent == 0 && +blueCounters[1].textContent == 0 && +blueCounters[2].textContent != 0) {
+    blueCounters[2].textContent = +blueCounters[2].textContent - 1;
+  }
+}
 
 
