@@ -118,7 +118,15 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  
+}
+
+.stage-item-inactive {
+  /* text-decoration: line-through; */
+  color: #c4c4c4;
+}
+
+.stage-item-inactive .card-item {
+  border: solid 1px #c4c4c4;
 }
 
 .card-list {
@@ -151,6 +159,10 @@ ul {
 
 .mess-btn {
   align-self: center;
+}
+
+.mess-btn-hidden {
+  visibility: hidden;
 }
 
 .playground {

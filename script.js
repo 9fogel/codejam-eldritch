@@ -41,21 +41,25 @@ window.onload = function () {
 anchients.forEach((anchient) => {
   anchient.onclick = function() {
     if (anchient.innerHTML === 'Azathoth') {
+      activateStage();
       setAnchientScheme(azathoth);
       document.querySelector('.active').classList.remove('active');
       anchient.classList.add('active');
       deck = getCardArr(azathoth);
     } else if (anchient.innerHTML === 'Cthulthu') {
+      activateStage();
       setAnchientScheme(cthulhu);
       document.querySelector('.active').classList.remove('active');
       anchient.classList.add('active');
       deck = getCardArr(cthulhu);
     } else if (anchient.innerHTML === 'IogSothoth') {
+      activateStage();
       setAnchientScheme(iogsothoth);
       document.querySelector('.active').classList.remove('active');
       anchient.classList.add('active');
       deck = getCardArr(iogsothoth);
     } else if (anchient.innerHTML === 'ShubNiggurath') {
+      activateStage();
       setAnchientScheme(shubniggurath);
       document.querySelector('.active').classList.remove('active');
       anchient.classList.add('active');
@@ -156,6 +160,7 @@ const playground = document.querySelector('.playground');
 messBtn.onclick = function() {
   console.log(deck);
   playground.classList.remove('playground-hidden');
+  messBtn.classList.add('mess-btn-hidden');
 }
 
 const cardDeck = document.querySelector('.card-deck');
@@ -176,19 +181,23 @@ function showCard() {
     color = 'green';
     number = card.substring(5, card.length);
     countGreen();
+    deactivateStage()
     } else if (card.startsWith('brown')) {
       color = 'brown';
       number = card.substring(5, card.length);
       countBrown();
+      deactivateStage()
     } else if (card.startsWith('blue')) {
       color = 'blue';
       number = card.substring(4, card.length);
       countBlue();
+      deactivateStage()
     }
   } else {
     alert ('Карты в колоде закончились, перезагрузите страницу или выберите Древнего, чтобы начать заново');
     cardFlipped.style.backgroundImage = '';
     playground.classList.add('playground-hidden');
+    messBtn.classList.remove('mess-btn-hidden');
   }
   
   let colorNum = color + number;
@@ -233,6 +242,24 @@ function countBlue() {
   } else if (+blueCounters[0].textContent == 0 && +blueCounters[1].textContent == 0 && +blueCounters[2].textContent != 0) {
     blueCounters[2].textContent = +blueCounters[2].textContent - 1;
   }
+}
+
+const stageItems = document.querySelectorAll('.stage-item');
+
+function deactivateStage() {
+  if (+greenCounters[2].textContent == 0 && +brownCounters[2].textContent == 0 && +blueCounters[2].textContent == 0) {
+    stageItems[2].classList.add('stage-item-inactive');
+  } else if (+greenCounters[1].textContent == 0 && +brownCounters[1].textContent == 0 && +blueCounters[1].textContent == 0) {
+    stageItems[1].classList.add('stage-item-inactive');
+  } else if (+greenCounters[0].textContent == 0 && +brownCounters[0].textContent == 0 && +blueCounters[0].textContent == 0) {
+    stageItems[0].classList.add('stage-item-inactive');
+  }
+}
+
+function activateStage() {
+  stageItems.forEach((stageItem) => {
+      stageItem.classList.remove('stage-item-inactive');
+  })
 }
 
 
