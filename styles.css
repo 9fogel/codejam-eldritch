@@ -1,0 +1,276 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 480px;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  background-color: green;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+.cards {
+  border: solid 1px black;
+}
+
+.ancient-list {
+  display: grid;
+  grid-template-columns: 300px 300px;
+  gap: 20px;
+}
+
+.ancient-item {
+  padding: 20px;
+  height: 400px;
+  font-weight: bold;
+  text-align: right;
+  border-radius: 16px;
+  border: solid 1px red;
+}
+
+.ancient-item:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.ancient-item.active {
+  border: solid 5px orange;
+}
+
+.anchient-A {
+  background-image: url('./assets/Ancients/Azathoth.jpg');
+  background-size: cover;
+}
+
+.anchient-C {
+  background-image: url('./assets/Ancients/Cthulthu.jpg');
+  background-size: cover;
+}
+
+.anchient-IS {
+  background-image: url('./assets/Ancients/IogSothoth.jpg');
+  background-size: cover;
+}
+
+.anchient-SN {
+  background-image: url('./assets/Ancients/ShubNiggurath.jpg');
+  background-size: cover;
+}
+
+.level {
+  margin: auto 0;
+}
+
+.level-btn,
+.mess-btn {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .4);
+}
+
+.level-btn:hover,
+.mess-btn:hover {
+  cursor: pointer;
+  background-color: orange;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .8);
+}
+
+.level-btn:active,
+.mess-btn:active {
+  background-color: rgb(179, 124, 24);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 40px;
+  width: 550px;
+}
+
+.stages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.stage-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.stage-item-inactive {
+  /* text-decoration: line-through; */
+  color: #c4c4c4;
+}
+
+.stage-item-inactive .card-item {
+  border: solid 1px #c4c4c4;
+}
+
+.card-list {
+  display: flex;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.card-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: solid 1px white;
+}
+
+.green {
+  background-color: #08410b;
+}
+
+.brown {
+  background-color: rgb(161, 93, 29);
+}
+
+.blue {
+  background-color: #1f1fcc;
+}
+
+.mess-btn {
+  align-self: center;
+}
+
+.mess-btn-hidden {
+  visibility: hidden;
+}
+
+.playground {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  height: 300px;
+}
+
+.playground-hidden {
+  visibility: hidden;
+}
+
+.card-deck {
+  width: 50%;
+  height: 100%;
+  background-image: url('./assets/MythicCards/mythicCardBackground.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: solid 1px red;
+  border-radius: 16px;
+}
+
+.card-deck:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.card-deck-flipped {
+  width: 50%;
+  height: 100%;
+  background-color: #c4c4c4;
+  /* background-image: url('./assets/MythicCards/blue/blue1.jpg'); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50% 50%;
+  border: solid 1px red;
+  border-radius: 16px;
+}
+
+@media (max-width: 1240px) {
+
+  .ancient-list {
+    grid-template-columns: 200px 200px;
+  }
+
+  .ancient-item {
+    padding-top: 30px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-color: #c4c4c4;
+  }
+
+  .level {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .level-btn, .mess-btn {
+    margin-top: 10px;
+  }
+  
+  .cards {
+    padding: 20px;
+  }
+
+  .stages-list {
+    gap: 16px;
+  }
+
+}
+
+@media (max-width: 1000px) {
+
+  .ancient-list {
+    grid-template-columns: 200px;
+  }
+  
+  .ancient-item {
+    height: 250px;
+  }
+
+  .level-title {
+    font-size: 16px;
+  }
+
+  .cards {
+    justify-content: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .cards {
+    padding: 0;
+  } 
+
+  .playground {
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+  }
+
+  .card-deck,
+  .card-deck-flipped {
+    width: 70%;
+  }
+}
